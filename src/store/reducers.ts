@@ -6,27 +6,42 @@ import WeatherResponse from "../interfaces/json";
 type State = {
   text: string;
   cities: Array<City>;
-  city: City;
-  list: Array<WeatherResponse>
+  weather: WeatherResponse;
 };
 
 const initialState: State = {
   text: "",
   cities: [],
-  city: {
+  weather: {
+    weather: [{
+      main: "",
+      description: "",
+      icon: "",
+    }],
+    main: {
+      temp: 0,
+      feels_like: 0,
+      temp_min: 0,
+      temp_max: 0,
+      pressure: 0,
+      humidity: 0,
+      sea_level: 0,
+      grnd_level: 0,
+    },
     name: "",
-    country: "",
-    state: "",
-    lat: 0,
-    lon: 0,
+    dt: 0,
+    sys: {
+      sunrise: 0,
+      sunset: 0,
+    },
+    forecast: [],
   },
-  list: []
 };
 
 const reducer = createReducer(initialState, (builder) =>
   builder
     .addCase(getCities.fulfilled, (state, action) => {
-      let newState = { ...state };
+      const newState = { ...state };
       if (action.payload.cities.length > 0 && action.payload.text) {
         newState.text = action.payload.text;
         newState.cities = action.payload.cities.map((each) => ({
@@ -45,10 +60,25 @@ const reducer = createReducer(initialState, (builder) =>
       return newState;
     })
     .addCase(getForecast.fulfilled, (state, action) => {
-      let newState = {
-        ...state,
-        city: action.payload.city,
-        list: action.payload.list,
+      const newState = { ...state };
+      newState.weather = {
+        weather: [{
+          main: action.payload.weather.weather[0].main,
+          description: action.payload.weather.weather[0].description,
+          icon: action.payload.weather.weather[0].icon,
+        }],
+        main: action.payload.weather.main,
+        name: action.payload.city,
+        dt: action.payload.weather.dt,
+        sys: {
+          sunrise: action.payload.weather.sys.sunrise,
+          sunset: action.payload.weather.sys.sunset,
+        },
+        forecast: [
+          action.payload.forecast[8],
+          action.payload.forecast[16],
+          action.payload.forecast[24],
+        ],
       };
       return newState;
     })
