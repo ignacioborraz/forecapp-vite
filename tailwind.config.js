@@ -20,6 +20,20 @@ export default {
       fontFamily: {
         dancing: ["Dancing Script", "cursive"],
       },
+      keyframes: {
+        "bounce-right": {
+          "0%, 100%": { transform: "translateX(0)" },
+          "50%": { transform: "translateX(2px)" },
+        },
+        "bounce-left": {
+          "0%, 100%": { transform: "translateX(0)" },
+          "50%": { transform: "translateX(-2px)" },
+        },
+      },
+      animation: {
+        "bounce-right": "bounce-right 1s infinite",
+        "bounce-left": "bounce-left 1s infinite",
+      },
     },
   },
   plugins: [],

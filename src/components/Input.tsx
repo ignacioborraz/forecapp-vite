@@ -14,7 +14,7 @@ export default function Input() {
       name="city"
       id="city"
       onChange={(event) => findCity(event.target.value)}
-      className="h-[50px] w-full p-2 rounded mt-2 text-center animate-bounce focus:animate-none text-blue-950"
+      className="h-[40px] w-[340px] p-2 rounded mt-2 text-center animate-bounce focus:animate-none text-slate-950"
       placeholder="search for a city"
     />
   );

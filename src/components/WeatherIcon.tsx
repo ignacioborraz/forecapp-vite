@@ -8,7 +8,7 @@ function WeatherIcon(props: Props) {
     <img
       className={`h-[${props.size}px] object-contain`}
       src={iconUrl}
-      alt="Icono climático"
+      alt="icon"
     />
   );
 }

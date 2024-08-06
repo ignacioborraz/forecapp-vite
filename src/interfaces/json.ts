@@ -1,10 +1,10 @@
-interface Weather {
+export interface Weather {
   main: string;
   description: string;
   icon: string;
 }
 
-interface Main {
+export interface Main {
   temp: number;
   feels_like: number;
   temp_min: number;
