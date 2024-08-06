@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Home from "./Home";
 import Forecast from "./Forecast";
 import Main from "../layouts/Main";
+import LastForecast from "./LastForecast";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
       {
         path: "/:city/:lat/:lon",
         element: <Forecast />,
+      },
+      {
+        path: "/latest",
+        element: <LastForecast />,
       },
     ],
   },

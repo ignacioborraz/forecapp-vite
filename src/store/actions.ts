@@ -1,4 +1,4 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { geoApiUrl, weatherApiUrl, apikey } from "../utils/env.ts";
 import City from "../interfaces/city";
@@ -8,7 +8,7 @@ const getCities = createAsyncThunk("getCities", async (city: string) => {
   try {
     if (city) {
       const response = await axios.get<City[]>(
-        `${geoApiUrl}/direct?q=${city}&limit=3&lang=es&appid=${apikey}`
+        `${geoApiUrl}/direct?q=${city}&limit=3&appid=${apikey}`
       );
       return { text: city || "", cities: response.data };
     } else {
@@ -27,10 +27,10 @@ type Obj = {
 const getForecast = createAsyncThunk("selectCity", async (obj: Obj) => {
   try {
     const weather = await axios.get(
-      `${weatherApiUrl}/weather?&${obj.query}&lang=es&units=metric&appid=${apikey}`
+      `${weatherApiUrl}/weather?&${obj.query}&units=metric&appid=${apikey}`
     );
     const forecast = await axios.get(
-      `${weatherApiUrl}/forecast?${obj.query}&lang=es&units=metric&appid=${apikey}`
+      `${weatherApiUrl}/forecast?${obj.query}&units=metric&appid=${apikey}`
     );
     return {
       weather: weather.data,
@@ -49,5 +49,6 @@ const getForecast = createAsyncThunk("selectCity", async (obj: Obj) => {
     };
   }
 });
+const resetData = createAction("resetData");
 
-export { getCities, getForecast };
+export { getCities, getForecast, resetData };

@@ -10,7 +10,7 @@ export default function CitiesTable() {
   //console.log(text);
 
   return (
-    <span className="w-full flex justify-between">
+    <span className="w-[340px] flex justify-between">
       {text === "" ? <CityLoaders /> : <Cities cities={cities} />}
     </span>
   );

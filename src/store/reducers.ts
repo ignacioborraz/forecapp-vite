@@ -1,5 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { getCities, getForecast } from "./actions";
+import { getCities, getForecast, resetData } from "./actions";
 import City from "../interfaces/city";
 import WeatherResponse from "../interfaces/json";
 
@@ -13,11 +13,13 @@ const initialState: State = {
   text: "",
   cities: [],
   weather: {
-    weather: [{
-      main: "",
-      description: "",
-      icon: "",
-    }],
+    weather: [
+      {
+        main: "",
+        description: "",
+        icon: "",
+      },
+    ],
     main: {
       temp: 0,
       feels_like: 0,
@@ -62,11 +64,13 @@ const reducer = createReducer(initialState, (builder) =>
     .addCase(getForecast.fulfilled, (state, action) => {
       const newState = { ...state };
       newState.weather = {
-        weather: [{
-          main: action.payload.weather.weather[0].main,
-          description: action.payload.weather.weather[0].description,
-          icon: action.payload.weather.weather[0].icon,
-        }],
+        weather: [
+          {
+            main: action.payload.weather.weather[0].main,
+            description: action.payload.weather.weather[0].description,
+            icon: action.payload.weather.weather[0].icon,
+          },
+        ],
         main: action.payload.weather.main,
         name: action.payload.city,
         dt: action.payload.weather.dt,
@@ -80,6 +84,10 @@ const reducer = createReducer(initialState, (builder) =>
           action.payload.forecast[24],
         ],
       };
+      return newState;
+    })
+    .addCase(resetData, () => {
+      const newState = initialState;
       return newState;
     })
 );
