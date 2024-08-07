@@ -4,6 +4,10 @@
 
 - **Nombre del Proyecto**: ForecApp
 - **Descripción**: Aplicación para buscar ciudades y mostrar sus condiciones climáticas actuales y de los próximos tres días utilizando datos de una API meteorológica. Además guarda información de las últimas tres consultas realizadas.
+- **Vistas**:
+  - **/**: Contiene un buscador de ciudades, al dar click sobre la ciudad accedes a los datos del clima de la ciudad elegida.
+  - **/city/lat/lon**: Contiene la consulta solicitada.
+  - **/latest**: Contiene las últimas tres consultas.
 
 ## 2. **Estructura del Proyecto**
 
