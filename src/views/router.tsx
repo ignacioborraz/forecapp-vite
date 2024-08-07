@@ -17,11 +17,11 @@ const router = createBrowserRouter([
         path: "/:city/:lat/:lon",
         element: <Forecast />,
       },
-      {
-        path: "/latest",
-        element: <LastForecast />,
-      },
     ],
+  },
+  {
+    path: "/latest",
+    element: <LastForecast />,
   },
 ]);
 

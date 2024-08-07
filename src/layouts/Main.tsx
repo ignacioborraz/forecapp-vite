@@ -1,6 +1,7 @@
-import { RootState } from "../store/store"; // Ajusta la ruta según sea necesario
+import { RootState } from "../store/store";
 import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
+import getBackgroundClass from "../utils/bg";
 
 export default function Main() {
   const weather = useSelector(
@@ -13,29 +14,12 @@ export default function Main() {
   const sunrise = useSelector(
     (state: RootState) => state.reducer.weather.sys.sunrise
   );
-
-  const now = (): boolean => {
-    const isDayTime = time >= sunrise && time <= sunset;
-    return isDayTime;
-  };
+  const isDayTime = time >= sunrise && time <= sunset;
+  const backgroundClass = getBackgroundClass(weather, isDayTime);
 
   return (
     <main
-      className={`bg-cover bg-center bg-no-repeat w-full min-h-screen flex flex-col justify-end items-center text-shadow-xl
-  ${
-    weather === "Clouds"
-      ? "bg-nublado md:bg-nubladohd"
-      : weather === "Snow"
-      ? "bg-nieve md:bg-nievehd"
-      : weather === "Rain"
-      ? "bg-lluvia md:bg-lluviahd"
-      : weather === "Clear"
-      ? now()
-        ? "bg-dia md:bg-diahd"
-        : "bg-noche md:bg-nochehd"
-      : "bg-generico md:bg-genericohd"
-  }
-  `}
+      className={`bg-cover bg-center bg-no-repeat w-full min-h-screen flex flex-col justify-end items-center text-shadow-xl ${backgroundClass}`}
     >
       <Outlet />
     </main>

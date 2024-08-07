@@ -2,6 +2,7 @@ type Props = {
   iconCode: string;
   size: number;
 };
+
 function WeatherIcon(props: Props) {
   const iconUrl = `http://openweathermap.org/img/wn/${props.iconCode}.png`;
   return (

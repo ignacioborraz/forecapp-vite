@@ -7,7 +7,7 @@ import Box from "../components/Box";
 import Buttons from "../components/Buttons.tsx";
 import ForecastTable from "../components/ForecastTable";
 import Temperature from "../components/Temperature";
-import WeatherResponse from "../interfaces/json.ts";
+import setInStorage from "../utils/setInStorage.ts";
 
 function Forecast() {
   const { city, lat, lon } = useParams();
@@ -15,24 +15,12 @@ function Forecast() {
 
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
-    findForecast(`lat=${lat}&lon=${lon}`, city || "");
+    dispatch(getForecast({ query: `lat=${lat}&lon=${lon}`, city: city || "" }));
   }, [city, lat, lon]);
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("data") || "[]");
-    if (weather.name) {
-      const includes = data.find(
-        (each: WeatherResponse) => each.name === weather.name
-      );
-      !includes && data.push(weather);
-      if (data.length === 4) {
-        data.shift();
-      }
-      localStorage.setItem("data", JSON.stringify(data));
-    }
+    setInStorage(weather, data);
   }, [weather]);
-  const findForecast = async (query: string, city: string) => {
-    await dispatch(getForecast({ query, city }));
-  };
 
   return (
     <Box title={city || ""} relative={false}>
