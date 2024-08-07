@@ -18,8 +18,12 @@ export default function Cities(props: Props) {
             key={index}
           />
         ))}
-      {!props.cities[1] && <Button wClass="w-full" text="..." />}
-      {!props.cities[2] && <Button wClass="w-full" text="No more matches!" />}
+      {!props.cities[1] && (
+        <Button wClass="w-full" text="..." relative={false} />
+      )}
+      {!props.cities[2] && (
+        <Button wClass="w-full" text="No more matches!" relative={false} />
+      )}
     </span>
   );
 }
