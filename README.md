@@ -39,7 +39,7 @@
 - **React Router**: Facilita la navegación y la creación de rutas dinámicas, mejorando la experiencia de usuario.
 - **Axios para Solicitudes HTTP**: Proporciona una interfaz más limpia y manejable para realizar solicitudes HTTP en comparación con `fetch`.
 
-## 5. **Instrucciones de Configuración y Ejecución**
+## 4. **Instrucciones de Configuración y Ejecución**
 
 - **Instalación**:
 
