@@ -2,7 +2,7 @@ type Props = {
   onClick?: () => void;
   text: string;
   wClass: string;
-  relative: boolean
+  relative?: boolean
 };
 
 export default function Button({ onClick, text, wClass, relative }: Props) {
